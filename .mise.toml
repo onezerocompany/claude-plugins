@@ -1,0 +1,6 @@
+[tools]
+bun = "latest"
+
+[env]
+# Ensure bun is used for all Node.js operations
+_.path = ["./node_modules/.bin", "$PATH"]

@@ -1,0 +1,33 @@
+{
+  "name": "claude-plugins",
+  "version": "1.0.0",
+  "description": "A curated marketplace of Claude Code plugins for enhanced productivity and functionality",
+  "type": "module",
+  "scripts": {
+    "validate": "bun run scripts/validate.ts",
+    "lint": "bun run scripts/lint-plugins.ts",
+    "check": "bun run validate && bun run lint",
+    "typecheck": "bun tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.9.3"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "plugins",
+    "marketplace",
+    "cli"
+  ],
+  "author": {
+    "name": "OneZero Company",
+    "email": "plugins@onezero.company"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OneZeroCompany/claude-plugins.git"
+  },
+  "homepage": "https://github.com/OneZeroCompany/claude-plugins"
+}
