@@ -1,0 +1,22 @@
+{
+  "name": "claude-workflows",
+  "version": "1.0.0",
+  "description": "Expert guidance for creating secure, production-ready GitHub workflows using Claude Code Action with up-to-date patterns and best practices",
+  "author": {
+    "name": "OneZero Company",
+    "email": "plugins@onezero.company"
+  },
+  "homepage": "https://github.com/OneZeroCompany/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "github-actions",
+    "claude-code-action",
+    "workflows",
+    "ci-cd",
+    "automation",
+    "security"
+  ],
+  "skills": ["./skills/claude-code-action-expert.md"],
+  "commands": ["./commands/generate-workflow.md"],
+  "agents": ["./agents/workflow-expert.md"]
+}

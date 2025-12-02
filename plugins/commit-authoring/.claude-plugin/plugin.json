@@ -1,0 +1,14 @@
+{
+  "name": "commit-authoring",
+  "version": "1.0.0",
+  "description": "Intelligent git commit authoring with AI-powered message generation, staging management, and cleanup utilities",
+  "author": {
+    "name": "OneZero Company",
+    "email": "plugins@onezero.company"
+  },
+  "homepage": "https://github.com/OneZeroCompany/claude-plugins",
+  "license": "MIT",
+  "keywords": ["git", "commit", "version-control", "automation", "cleanup"],
+  "commands": ["./commands/commit.md", "./commands/cleanup.md"],
+  "agents": ["./agents/commit-author.md"]
+}

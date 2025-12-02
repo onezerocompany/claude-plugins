@@ -1,0 +1,109 @@
+{
+  "servers": {
+    "typescript": {
+      "command": "typescript-language-server",
+      "args": ["--stdio"],
+      "extensions": ["ts", "tsx", "js", "jsx", "mjs", "cjs"],
+      "rootIndicators": ["package.json", "tsconfig.json", "jsconfig.json"],
+      "disabled": false
+    },
+    "go": {
+      "command": "gopls",
+      "args": [],
+      "extensions": ["go"],
+      "rootIndicators": ["go.mod", "go.sum"],
+      "disabled": false
+    },
+    "rust": {
+      "command": "rust-analyzer",
+      "args": [],
+      "extensions": ["rs"],
+      "rootIndicators": ["Cargo.toml", "Cargo.lock"],
+      "disabled": false
+    },
+    "python": {
+      "command": "pyright-langserver",
+      "args": ["--stdio"],
+      "extensions": ["py", "pyi"],
+      "rootIndicators": ["pyproject.toml", "setup.py", "requirements.txt", "pyrightconfig.json"],
+      "disabled": false
+    },
+    "java": {
+      "command": "jdtls",
+      "args": [],
+      "extensions": ["java"],
+      "rootIndicators": ["pom.xml", "build.gradle", ".classpath"],
+      "disabled": false
+    },
+    "ruby": {
+      "command": "solargraph",
+      "args": ["stdio"],
+      "extensions": ["rb"],
+      "rootIndicators": ["Gemfile", ".ruby-version"],
+      "disabled": false
+    },
+    "cpp": {
+      "command": "clangd",
+      "args": [],
+      "extensions": ["c", "cpp", "h", "hpp", "cc", "cxx"],
+      "rootIndicators": ["compile_commands.json", ".clangd", "CMakeLists.txt"],
+      "disabled": false
+    },
+    "csharp": {
+      "command": "omnisharp",
+      "args": ["--languageserver"],
+      "extensions": ["cs", "csx"],
+      "rootIndicators": [".csproj", ".sln"],
+      "disabled": false
+    },
+    "elixir": {
+      "command": "elixir-ls",
+      "args": [],
+      "extensions": ["ex", "exs"],
+      "rootIndicators": ["mix.exs"],
+      "disabled": false
+    },
+    "lua": {
+      "command": "lua-language-server",
+      "args": [],
+      "extensions": ["lua"],
+      "rootIndicators": [".luarc.json", ".luacheckrc"],
+      "disabled": false
+    },
+    "zig": {
+      "command": "zls",
+      "args": [],
+      "extensions": ["zig"],
+      "rootIndicators": ["build.zig"],
+      "disabled": false
+    },
+    "swift": {
+      "command": "sourcekit-lsp",
+      "args": [],
+      "extensions": ["swift"],
+      "rootIndicators": ["Package.swift"],
+      "disabled": false
+    },
+    "vue": {
+      "command": "vue-language-server",
+      "args": ["--stdio"],
+      "extensions": ["vue"],
+      "rootIndicators": ["package.json"],
+      "disabled": false
+    },
+    "svelte": {
+      "command": "svelteserver",
+      "args": ["--stdio"],
+      "extensions": ["svelte"],
+      "rootIndicators": ["svelte.config.js", "package.json"],
+      "disabled": false
+    },
+    "astro": {
+      "command": "astro-ls",
+      "args": ["--stdio"],
+      "extensions": ["astro"],
+      "rootIndicators": ["astro.config.mjs", "astro.config.js"],
+      "disabled": false
+    }
+  }
+}

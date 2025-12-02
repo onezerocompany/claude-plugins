@@ -1,0 +1,46 @@
+{
+  "name": "onezero-plugins",
+  "version": "1.0.0",
+  "metadata": {
+    "description": "A curated marketplace of Claude Code plugins for enhanced productivity and functionality"
+  },
+  "owner": {
+    "name": "OneZero Company",
+    "email": "dev@onezero.company"
+  },
+  "plugins": [
+    {
+      "name": "claude-workflows",
+      "description": "Expert guidance for creating secure, production-ready GitHub workflows using Claude Code Action with up-to-date patterns and best practices",
+      "version": "1.0.0",
+      "source": "claude-workflows",
+      "keywords": ["github-actions", "claude-code-action", "workflows", "ci-cd", "automation", "security"],
+      "author": {
+        "name": "OneZero Company",
+        "email": "plugins@onezero.company"
+      }
+    },
+    {
+      "name": "commit-authoring",
+      "description": "Intelligent git commit authoring with AI-powered message generation, staging management, and cleanup utilities",
+      "version": "1.0.0",
+      "source": "commit-authoring",
+      "keywords": ["git", "commit", "version-control", "automation", "cleanup"],
+      "author": {
+        "name": "OneZero Company",
+        "email": "dev@onezero.company"
+      }
+    },
+    {
+      "name": "lsp-hooks",
+      "description": "A plugin that integrates with Language Server Protocol (LSP) to provide automated code diagnostics, formatting, and validation hooks",
+      "version": "1.0.0",
+      "source": "lsp-hooks",
+      "keywords": ["lsp", "hooks", "diagnostics", "formatting", "validation", "code-quality"],
+      "author": {
+        "name": "OneZero Company",
+        "email": "dev@onezero.company"
+      }
+    }
+  ]
+}

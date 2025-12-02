@@ -1,0 +1,20 @@
+{
+  "name": "starlight-docs",
+  "version": "1.0.0",
+  "description": "Expert guidance for authoring documentation websites using Astro Starlight with the Rapide theme, including all built-in components and best practices",
+  "author": {
+    "name": "OneZero Company",
+    "email": "plugins@onezero.company"
+  },
+  "homepage": "https://github.com/OneZeroCompany/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "starlight",
+    "astro",
+    "documentation",
+    "rapide-theme",
+    "mdx",
+    "docs"
+  ],
+  "skills": ["./skills/starlight-authoring.md"]
+}

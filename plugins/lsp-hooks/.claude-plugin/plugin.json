@@ -1,0 +1,13 @@
+{
+  "name": "lsp-hooks",
+  "version": "1.0.0",
+  "description": "A plugin that integrates with Language Server Protocol (LSP) to provide automated code diagnostics, formatting, and validation hooks",
+  "author": {
+    "name": "OneZero Company",
+    "email": "plugins@onezero.company"
+  },
+  "homepage": "https://github.com/OneZeroCompany/claude-plugins",
+  "license": "MIT",
+  "keywords": ["lsp", "hooks", "diagnostics", "formatting", "validation", "code-quality"],
+  "commands": ["./commands/lsp-check.md", "./commands/lsp-format.md"]
+}
