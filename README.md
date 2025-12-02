@@ -12,54 +12,26 @@ Browse available plugins in [`.claude-plugin/marketplace.json`](.claude-plugin/m
 
 ### Featured Plugins
 
-- **hello-world** - A simple example plugin demonstrating basic command structure
-- **code-reviewer** - An agent plugin that provides automated code review capabilities
+| Plugin | Description |
+|--------|-------------|
+| **[claude-workflows](plugins/claude-workflows)** | Expert guidance for creating secure GitHub workflows using Claude Code Action |
+| **[commit-authoring](plugins/commit-authoring)** | Intelligent git commit authoring with AI-powered message generation |
+| **[lsp-hooks](plugins/lsp-hooks)** | LSP integration for automated diagnostics, formatting, and validation |
 
 ## Installation
 
 ### Add this marketplace to Claude Code
 
 ```bash
-/plugin marketplace add github:OneZeroCompany/claude-plugins
+/install-plugin github:OneZeroCompany/claude-plugins/<plugin-name>
 ```
 
-Or if using the repository URL directly:
+For example:
 
 ```bash
-/plugin marketplace add https://github.com/OneZeroCompany/claude-plugins.git
+/install-plugin github:OneZeroCompany/claude-plugins/commit-authoring
+/install-plugin github:OneZeroCompany/claude-plugins/lsp-hooks
 ```
-
-### Install a plugin
-
-Once you've added the marketplace, install any plugin:
-
-```bash
-/plugin install hello-world@claude-plugins
-/plugin install code-reviewer@claude-plugins
-```
-
-### List available plugins
-
-```bash
-/plugin marketplace list claude-plugins
-```
-
-## For Teams
-
-Organizations can automatically include this marketplace for all team members by adding it to `.claude/settings.json`:
-
-```json
-{
-  "extraKnownMarketplaces": [
-    {
-      "source": "github",
-      "repo": "OneZeroCompany/claude-plugins"
-    }
-  ]
-}
-```
-
-Team members will see these plugins available when they trust the repository.
 
 ## Contributing a Plugin
 
@@ -69,7 +41,7 @@ We welcome community contributions! To add your plugin to this marketplace:
 
 1. Fork this repository
 2. Create a new directory under `plugins/` with your plugin name
-3. Add your plugin files including `plugin.json` manifest
+3. Add your plugin files including `.claude-plugin/plugin.json` manifest
 4. Update `.claude-plugin/marketplace.json` to include your plugin entry
 5. Submit a pull request
 
@@ -94,12 +66,12 @@ We welcome community contributions! To add your plugin to this marketplace:
 
 All plugins must include:
 
-- **plugin.json** - A valid plugin manifest with required fields (name, version, description)
-- **README.md** - Documentation explaining what the plugin does and how to use it
-- Clear licensing information
-- Proper error handling and validation
+- **`.claude-plugin/plugin.json`** - A valid manifest with required fields (name, version, description)
+- **`README.md`** - Documentation explaining what the plugin does and how to use it
+- **`LICENSE`** - Clear licensing information
+- At least one component (commands, agents, skills, or hooks)
 
-See our [example plugins](plugins/) for reference.
+See our [existing plugins](plugins/) for reference.
 
 ## Development
 
@@ -157,17 +129,23 @@ bun run check
 
 Runs both validation and linting.
 
-### Testing locally
-
-You can test the marketplace locally before publishing:
-
-```bash
-/plugin marketplace add file:///path/to/claude-plugins
-```
-
 ## Plugin Structure
 
-A basic plugin manifest (`plugin.json`) looks like:
+A plugin directory should contain:
+
+```
+my-plugin/
+├── .claude-plugin/
+│   └── plugin.json      # Plugin manifest (required)
+├── commands/            # Slash commands (optional)
+├── agents/              # Autonomous agents (optional)
+├── skills/              # Skills for context (optional)
+├── hooks/               # Event hooks (optional)
+├── LICENSE              # License file
+└── README.md            # Documentation
+```
+
+The manifest (`.claude-plugin/plugin.json`) looks like:
 
 ```json
 {
@@ -178,17 +156,14 @@ A basic plugin manifest (`plugin.json`) looks like:
     "name": "Your Name",
     "email": "your@email.com"
   },
-  "commands": [
-    {
-      "name": "my-command",
-      "description": "Command description",
-      "file": "./commands/my-command.js"
-    }
-  ]
+  "license": "MIT",
+  "commands": ["./commands/my-command.md"],
+  "agents": ["./agents/my-agent.md"],
+  "skills": ["./skills/my-skill.md"]
 }
 ```
 
-For more details, see the [Claude Code Plugin Documentation](https://code.claude.com/docs/en/plugins).
+For more details, see the [Claude Code Plugin Documentation](https://docs.anthropic.com/en/docs/claude-code/plugins).
 
 ## License
 
