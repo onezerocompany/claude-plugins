@@ -16,5 +16,6 @@
     "mdx",
     "docs"
   ],
+  "commands": ["./commands/doc-check.md"],
   "skills": ["./skills/starlight-authoring.md"]
 }
