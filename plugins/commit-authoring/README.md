@@ -23,6 +23,31 @@ Analyzes your current changes and creates a well-crafted git commit with an AI-g
 /commit adding new user profile feature
 ```
 
+#### `/amend [context|--no-edit]`
+Intelligently amends the last commit with new changes and optionally regenerates the commit message.
+
+**What it does:**
+- Checks if the last commit has been pushed (warns about force push implications)
+- Analyzes both the original commit and new changes
+- Determines if the commit message should be updated based on change significance
+- Generates an updated message that incorporates both original and new changes
+- Shows before/after comparison of commit messages
+- Handles the "oops, forgot to stage that file" scenario
+- Always requires user confirmation before amending
+
+**Usage:**
+```bash
+/amend                      # Amend with staged changes, optionally update message
+/amend --no-edit            # Keep original message (for adding forgotten files)
+/amend fixing the typo      # Amend with context about what was added
+```
+
+**Safety features:**
+- Warns if commit has been pushed to remote
+- Shows clear diff of what will be amended
+- Suggests splitting into new commit if changes are too different
+- Never amends without explicit approval
+
 #### `/cleanup [path]`
 Cleans up your git staging area by identifying and removing files that shouldn't be committed.
 
@@ -40,7 +65,7 @@ Cleans up your git staging area by identifying and removing files that shouldn't
 /cleanup node_modules/      # Remove specific path
 ```
 
-### Agent
+### Agents
 
 #### `commit-author`
 A specialized agent that handles the entire commit creation process with intelligence and care.
@@ -60,6 +85,26 @@ A specialized agent that handles the entire commit creation process with intelli
 4. Presents analysis and proposed message
 5. Waits for your approval before committing
 
+#### `amend-author`
+A specialized agent that safely handles commit amendments with intelligent message updates.
+
+**Capabilities:**
+- Safety checks for pushed commits
+- Analysis of original commit and new changes
+- Smart decision-making on whether to update commit message
+- Before/after message comparison
+- Force push warnings
+- Change significance assessment
+
+**How it works:**
+1. Checks if the commit has been pushed (warns about force push)
+2. Analyzes the original commit message and changes
+3. Reviews new staged/unstaged changes
+4. Determines if message should be updated based on change significance
+5. Generates updated message incorporating both old and new changes
+6. Shows before/after comparison
+7. Waits for approval before amending
+
 ## Installation
 
 This plugin is part of the claude-plugins marketplace. To install:
@@ -75,6 +120,18 @@ This plugin is part of the claude-plugins marketplace. To install:
 - When you want AI assistance crafting the perfect message
 - To maintain consistent commit style across your team
 - When unsure how to describe complex changes
+
+### When to use `/amend`
+- When you forgot to stage files in your last commit
+- After making small fixes or additions to recent work
+- When you want to update the commit message to reflect additional changes
+- Before pushing - never amend commits that have been pushed without good reason
+- When the new changes logically belong with the previous commit
+
+**When NOT to use `/amend`:**
+- After the commit has been pushed (unless you understand force push implications)
+- When the new changes represent different functionality (make a new commit instead)
+- On commits that other developers may have based work on
 
 ### When to use `/cleanup`
 - Before committing, to ensure you're not including unwanted files

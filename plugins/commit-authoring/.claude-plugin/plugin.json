@@ -9,6 +9,6 @@
   "homepage": "https://github.com/OneZeroCompany/claude-plugins",
   "license": "MIT",
   "keywords": ["git", "commit", "version-control", "automation", "cleanup"],
-  "commands": ["./commands/commit.md", "./commands/cleanup.md"],
-  "agents": ["./agents/commit-author.md"]
+  "commands": ["./commands/commit.md", "./commands/cleanup.md", "./commands/amend.md"],
+  "agents": ["./agents/commit-author.md", "./agents/amend-author.md"]
 }
