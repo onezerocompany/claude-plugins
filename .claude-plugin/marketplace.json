@@ -30,17 +30,6 @@
         "name": "OneZero Company",
         "email": "dev@onezero.company"
       }
-    },
-    {
-      "name": "lsp-hooks",
-      "description": "A plugin that integrates with Language Server Protocol (LSP) to provide automated code diagnostics, formatting, and validation hooks",
-      "version": "1.0.0",
-      "source": "lsp-hooks",
-      "keywords": ["lsp", "hooks", "diagnostics", "formatting", "validation", "code-quality"],
-      "author": {
-        "name": "OneZero Company",
-        "email": "dev@onezero.company"
-      }
     }
   ]
 }
