@@ -50,15 +50,18 @@ A specialized agent that handles the entire commit creation process with intelli
 - Context-aware commit message generation
 - Conventional commit format support
 - Multi-file change analysis
+- **Monorepo structure detection and package-aware scoping**
 - Sensitive data detection
 - Commit style consistency
 
 **How it works:**
-1. Runs `git status`, `git diff`, and `git log` to gather context
-2. Analyzes the nature and scope of changes
-3. Generates appropriate commit message following conventions
-4. Presents analysis and proposed message
-5. Waits for your approval before committing
+1. Detects monorepo structure (pnpm, npm, yarn workspaces, Lerna, Nx, Turborepo)
+2. Runs `git status`, `git diff`, and `git log` to gather context
+3. Maps changed files to their containing packages (in monorepos)
+4. Analyzes the nature and scope of changes
+5. Generates appropriate commit message with package-based scopes
+6. Presents analysis and proposed message
+7. Waits for your approval before committing
 
 ## Installation
 
@@ -106,9 +109,82 @@ The plugin follows Conventional Commits format:
 - `ci`: CI/CD changes
 - `build`: Build system changes
 
+## Monorepo Support
+
+The plugin automatically detects and works intelligently with monorepo structures:
+
+### Supported Monorepo Tools
+- **pnpm workspaces** (`pnpm-workspace.yaml`)
+- **npm workspaces** (`workspaces` in `package.json`)
+- **Yarn workspaces** (`workspaces` in `package.json`)
+- **Lerna** (`lerna.json`)
+- **Nx** (`nx.json`)
+- **Turborepo** (`turbo.json`)
+
+### Monorepo Features
+- **Automatic package detection**: Identifies which packages are affected by your changes
+- **Smart scope suggestions**: Uses package names as commit scopes
+- **Multi-package handling**: Combines scopes for changes spanning related packages
+- **Split recommendations**: Suggests splitting commits when changes affect unrelated packages
+- **Root-level awareness**: Handles repo-wide changes with appropriate `repo` scope
+- **Performance caching**: Caches package structure for fast subsequent commits
+
+### Scope Naming Convention
+- Single package: `feat(core): ...` or `fix(web): ...`
+- Multiple packages: `feat(core, utils): ...`
+- Root changes: `chore(repo): ...`
+- Package name extraction strips common prefixes (`packages/core` → `core`)
+
 ## Examples
 
-### Example 1: Creating a Feature Commit
+### Example 1: Monorepo Commit (Multiple Packages)
+
+```bash
+# You: /commit
+# Agent analyzes changes in a monorepo...
+
+## Commit Analysis
+
+**Monorepo Detected**: pnpm workspaces
+**Packages Affected**:
+- core (3 files)
+- utils (1 file)
+- web (2 files)
+
+**Files Changed**:
+- packages/core/src/validators.ts
+- packages/core/src/user.ts
+- packages/utils/src/email.ts
+- apps/web/src/components/LoginForm.tsx
+- apps/web/src/components/SignupForm.tsx
+
+**Change Type**: feat
+**Suggested Scope**: core, utils
+
+## Proposed Commit Message
+
+feat(core, utils): add shared validation helpers
+
+Add email validation utility to @myorg/utils and integrate
+validation throughout user management in @myorg/core.
+
+- Add validateEmail function to utils package
+- Integrate validation in core user module
+- Update web app forms to use new validators
+- Add comprehensive test coverage
+
+## Changes Summary
+Implemented shared validation utilities that are now used across
+core user management and web application forms, improving consistency
+and reducing code duplication.
+
+Proceed with this commit?
+
+# You: yes
+# Agent commits with the message
+```
+
+### Example 2: Creating a Feature Commit
 
 ```bash
 # You: /commit
@@ -147,7 +223,57 @@ Proceed with this commit?
 # Agent commits with the message
 ```
 
-### Example 2: Cleaning Up Staging Area
+### Example 3: Monorepo - Suggest Splitting Commits
+
+```bash
+# You: /commit
+# Agent detects unrelated changes...
+
+## Commit Analysis
+
+**Monorepo Detected**: npm workspaces
+**Packages Affected**:
+- auth (5 files)
+- docs (12 files)
+
+**Files Changed**:
+- packages/auth/src/oauth.ts (major refactor)
+- packages/auth/src/session.ts (major refactor)
+- packages/auth/tests/*.test.ts (new tests)
+- packages/docs/README.md (documentation update)
+- packages/docs/guides/*.md (new guides)
+
+**Change Type**: Mixed (refactor + docs)
+
+⚠️ **Note**: Changes span unrelated packages (auth refactor + docs update). Consider splitting into separate commits for better history.
+
+## Suggested Approach
+
+**Commit 1**: Auth refactoring
+```
+refactor(auth): modernize OAuth implementation
+
+- Migrate to OAuth 2.1 standard
+- Improve session management
+- Add comprehensive test coverage
+```
+
+**Commit 2**: Documentation updates
+```
+docs(docs): add OAuth integration guides
+
+- Add step-by-step OAuth setup guide
+- Document session management best practices
+- Update API reference
+```
+
+Would you like me to:
+1. Create two separate commits (recommended)
+2. Combine into one commit anyway
+3. Let you manually stage files for each commit
+```
+
+### Example 4: Cleaning Up Staging Area
 
 ```bash
 # You: /cleanup
