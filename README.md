@@ -99,6 +99,28 @@ mise install
 curl -fsSL https://bun.sh/install | bash
 ```
 
+### Setup Pre-commit Hooks
+
+This repository uses [lefthook](https://github.com/evilmartians/lefthook) to automatically run validation checks before commits:
+
+```bash
+# Install dependencies (includes lefthook)
+bun install
+
+# Install git hooks
+bunx lefthook install
+```
+
+The pre-commit hooks will automatically run:
+- Type checking
+- Marketplace validation
+- Plugin linting
+
+To skip hooks for WIP commits (not recommended):
+```bash
+git commit --no-verify
+```
+
 ### Validate the marketplace
 
 ```bash

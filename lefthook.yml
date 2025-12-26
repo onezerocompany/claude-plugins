@@ -1,0 +1,16 @@
+# Lefthook configuration for pre-commit validation
+# Runs validation checks before commits to catch issues early
+
+pre-commit:
+  parallel: true
+  commands:
+    typecheck:
+      run: bun run typecheck
+      description: Run TypeScript type checking
+    validate:
+      run: bun run validate
+      description: Validate marketplace.json structure
+    lint:
+      run: bun run lint
+      description: Lint plugin manifests and structure
+      glob: "plugins/**/*"
