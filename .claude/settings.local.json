@@ -2,11 +2,12 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:proxy.golang.org)",
-      "WebFetch(domain:sum.golang.org)"
+      "WebFetch(domain:sum.golang.org)",
+      "WebFetch(domain:api.github.com)"
     ]
   },
   "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true
+    "enabled": false,
+    "autoAllowBashIfSandboxed": false
   }
 }
